@@ -108,6 +108,9 @@ pipeline {
          }
 		 
 		 stage('Deploy to Production ') {
+		    when {
+                branch 'production'
+            }
            steps {
                  echo "Deployment on Production is compelted"
            }
@@ -115,6 +118,9 @@ pipeline {
 		 
 		 
 		 stage('Sanity on Deployment ') {
+		    when {
+                branch 'production'
+            }
            steps {
                  echo "Sanity Successfully Completed on Deployment"
            }
