@@ -3,13 +3,7 @@
         tools {
           maven 'maven'
         }
-        stages {
-		  stage('Clone sources') {
-		    steps{
-                git url: 'https://github.com/midhunthampi/WebApp.git'
-				}
-          }
-		  
+        stages {  
           stage("build & SonarQube analysis") {
             agent any
             steps {
