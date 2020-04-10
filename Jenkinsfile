@@ -12,7 +12,7 @@ pipeline {
                 rtServer (
                     id: "ARTIFACTORY_SERVER",
                     url: "https://thiyagumaniserver.jfrog.io/thiyagumaniserver",
-                    credentialsId: "admin"
+                    credentialsId: "thiyaguartifactory"
                 )
 
                 rtMavenDeployer (
