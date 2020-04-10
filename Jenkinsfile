@@ -24,7 +24,7 @@ node {
         buildInfo = rtMaven.run pom: 'pom.xml', goals: 'clean install'
 	post {
         always {
-           jiraSendBuildInfo site: '<sitename>.atlassian.net'
+           jiraSendBuildInfo site: 'devopsgroups2.atlassian.net'
        }
 	}
     }
