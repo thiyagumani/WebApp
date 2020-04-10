@@ -1,30 +1,29 @@
-      pipeline {
-        agent none
-        tools {
-          maven 'maven'
-        }
-        stages {  
-          stage("build & SonarQube analysis") {
-            agent any
+pipeline {
+    agent any
+    stages {
+        stage('SCM') {
             steps {
-              withSonarQubeEnv(credentialsId: 'sonarqube1', installationName: 'sonarqube1') {
-                sh 'mvn clean package sonar:sonar -Dsonar.host.url=http://sonar-devops.westus.cloudapp.azure.com/ -Dsonar.login=a9c8113177c7cfd5d1fa326e88261b0e00f210d1 -Dsonar.sources=. -Dsonar.tests=. -Dsonar.test.inclusions=**/test/java/servlet/createpage_junit.java -Dsonar.exclusions=**/test/java/servlet/createpage_junit.java'
-              }
+                git url: 'https://github.com/midhunthampi/WebApp.git'
             }
-			post {
-                 always {
-                     jiraSendBuildInfo site: 'devopsgroups2.atlassian.net', branch: 'DEV-6 Implement Code'
-                 }
-             }
-          }
-          stage("Quality Gate") {
-            steps {
-              timeout(time: 1, unit: 'HOURS') {
-                waitForQualityGate abortPipeline: true
-              }
-            }
-          }
         }
-      }
-	  
-	  
+        stage('build && SonarQube analysis') {
+            steps {
+                withSonarQubeEnv(credentialsId: 'sonarqube1', installationName: 'sonarqube1') {
+                    // Optionally use a Maven environment you've configured already
+                    withMaven(maven:'Maven 3.5') {
+                        sh 'mvn clean package sonar:sonar'
+                    }
+                }
+            }
+        }
+        stage("Quality Gate") {
+            steps {
+                timeout(time: 1, unit: 'HOURS') {
+                    // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
+                    // true = set pipeline to UNSTABLE, false = don't
+                    waitForQualityGate abortPipeline: true
+                }
+            }
+        }
+    }
+}
