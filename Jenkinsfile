@@ -8,13 +8,10 @@ pipeline {
         }
         
         stage('Sonarqube') {
-          environment {
-               scannerHome = tool 'sonarqube1'
-                      }
            steps {
-             withSonarQubeEnv('sonarqube') {
-              sh "${scannerHome}/bin/sonar-scanner"
-                 }
+                 withSonarQubeEnv('sonarqube1') {
+                 mvn ‘${SONAR_MAVEN_GOAL} -Dsonar.host.url=${SONAR_HOST_URL} -Dsonar.login=${SONAR_AUTH_TOKEN} ${SONAR_EXTRA_PROPS} ‘
+                }
               timeout(time: 10, unit: 'MINUTES') {
               waitForQualityGate abortPipeline: true
                }
