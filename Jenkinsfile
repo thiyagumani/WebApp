@@ -22,6 +22,10 @@ node {
 
     stage('Maven build') {
         buildInfo = rtMaven.run pom: 'pom.xml', goals: 'clean install'
+	post {
+        always {
+           jiraSendBuildInfo site: '<sitename>.atlassian.net'
+       }
     }
 
     stage('Publish build info') {
