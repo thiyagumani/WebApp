@@ -12,7 +12,7 @@ pipeline {
                 rtServer (
                     id: "ARTIFACTORY_SERVER",
                     url: "https://devopsdemoggb.jfrog.io/devopsdemoggb",
-                    credentialsId: CREDENTIALS
+                    credentialsId: "admin"
                 )
 
                 rtMavenDeployer (
