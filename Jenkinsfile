@@ -11,6 +11,7 @@ pipeline {
            steps {
                  withSonarQubeEnv('sonarqube1') {
                  echo "Good"
+                 sh 'mvn clean package sonar:sonar'
                  }
            }
          }
