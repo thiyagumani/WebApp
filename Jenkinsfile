@@ -10,8 +10,8 @@ pipeline {
         stage('Sonarqube') {
            steps {
                  withSonarQubeEnv('sonarqube1') {
-                 echo : Good:
-                }
+                 echo "Good"
+                 }
            }
          }
         
