@@ -7,7 +7,7 @@
           stage("build & SonarQube analysis") {
             agent any
             steps {
-              withSonarQubeEnv('sonar') {
+              withSonarQubeEnv(credentialsId: 'sonarqube1', installationName: 'sonarqube1') {
                 sh 'mvn clean package sonar:sonar -Dsonar.host.url=http://sonar-devops.westus.cloudapp.azure.com/ -Dsonar.login=a9c8113177c7cfd5d1fa326e88261b0e00f210d1 -Dsonar.sources=. -Dsonar.tests=. -Dsonar.test.inclusions=**/test/java/servlet/createpage_junit.java -Dsonar.exclusions=**/test/java/servlet/createpage_junit.java'
               }
             }
