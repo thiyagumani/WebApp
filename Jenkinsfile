@@ -12,7 +12,8 @@ pipeline {
                 rtServer (
                     id: "ARTIFACTORY_SERVER",
                     url: "https://thiyagumaniserver.jfrog.io/thiyagumaniserver",
-                    credentialsId: "thiyaguartifactory"
+                    username: 'admin',
+                    password: 'Qt6Mh2Sh6Hc2Ai'
                 )
 
                 rtMavenDeployer (
