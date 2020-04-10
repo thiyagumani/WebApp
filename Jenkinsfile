@@ -5,7 +5,9 @@
         }
         stages {
 		  stage('Clone sources') {
+		    steps{
                 git url: 'https://github.com/midhunthampi/WebApp.git'
+				}
           }
 		  
           stage("build & SonarQube analysis") {
