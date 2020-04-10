@@ -121,7 +121,7 @@ pipeline {
 		   
 		   post {
                  always {
-                     jiraSendDeploymentInfo  site: 'devopsgroups2.atlassian.net', branch: 'DEV-1 Create Jira'
+                     jiraSendBuildInfo site: 'devopsgroups2.atlassian.net', branch: 'DEV-6 Implement Code'
                  }
              }
          }
