@@ -10,7 +10,7 @@ pipeline {
         stage('Sonarqube') {
            steps {
                  withSonarQubeEnv('sonarqube1') {
-                 mvn ‘${SONAR_MAVEN_GOAL} -Dsonar.host.url=${SONAR_HOST_URL} -Dsonar.login=${SONAR_AUTH_TOKEN} ${SONAR_EXTRA_PROPS} ‘
+                 mvn version
                 }
               timeout(time: 10, unit: 'MINUTES') {
               waitForQualityGate abortPipeline: true
