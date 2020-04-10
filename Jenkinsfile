@@ -10,7 +10,7 @@ pipeline {
         stage ('Artifactory configuration') {
             steps {
                 rtServer (
-                    id: "ARTIFACTORY_SERVER",
+                    id: "thiyaguartifactory",
                     url: "https://thiyagumaniserver.jfrog.io/thiyagumaniserver",
                     username: 'admin',
                     password: 'Qt6Mh2Sh6Hc2Ai'
@@ -18,14 +18,14 @@ pipeline {
 
                 rtMavenDeployer (
                     id: "MAVEN_DEPLOYER",
-                    serverId: "ARTIFACTORY_SERVER",
+                    serverId: "thiyaguartifactory",
                     releaseRepo: "libs-release-local",
                     snapshotRepo: "libs-snapshot-local"
                 )
 
                 rtMavenResolver (
                     id: "MAVEN_RESOLVER",
-                    serverId: "ARTIFACTORY_SERVER",
+                    serverId: "thiyaguartifactory",
                     releaseRepo: "libs-release",
                     snapshotRepo: "libs-snapshot"
                 )
@@ -47,7 +47,7 @@ pipeline {
         stage ('Publish build info') {
             steps {
                 rtPublishBuildInfo (
-                    serverId: "ARTIFACTORY_SERVER"
+                    serverId: "thiyaguartifactory"
                 )
             }
         }
@@ -55,7 +55,7 @@ pipeline {
         stage ('Xray scan') {
             steps {
                 xrayScan (
-                    serverId: "ARTIFACTORY_SERVER",
+                    serverId: "thiyaguartifactory",
                     failBuild: false
                 )
             }
