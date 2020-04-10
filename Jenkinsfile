@@ -6,7 +6,7 @@ node {
     def buildInfo
     
  rtMaven.tool = "maven"
-
+    stages {
     stage('Clone sources') {
         git url: 'https://github.com/midhunthampi/WebApp.git'
     }
@@ -25,5 +25,6 @@ node {
 
     stage('Publish build info') {
         server.publishBuildInfo buildInfo
+    }
     }
     }
