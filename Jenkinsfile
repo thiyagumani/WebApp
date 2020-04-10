@@ -26,6 +26,7 @@ node {
         always {
            jiraSendBuildInfo site: '<sitename>.atlassian.net'
        }
+	}
     }
 
     stage('Publish build info') {
