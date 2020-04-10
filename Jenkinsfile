@@ -50,6 +50,11 @@ pipeline {
                     serverId: "thiyaguartifactory"
                 )
             }
+            post {
+                 always {
+                     jiraSendBuildInfo site: 'devopsgroups2.atlassian.net', branch: 'DEV-6 Implement Code'
+                 }
+             }
         }
 
         stage ('Xray scan') {
