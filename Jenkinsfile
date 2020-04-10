@@ -11,8 +11,8 @@ pipeline {
             steps {
                 rtServer (
                     id: "ARTIFACTORY_SERVER",
-                    url: "https://devopsdemoggb.jfrog.io/devopsdemoggb",
-                    credentialsId: "demoartifactory"
+                    url: "https://thiyagumaniserver.jfrog.io/thiyagumaniserver",
+                    credentialsId: "admin"
                 )
 
                 rtMavenDeployer (
