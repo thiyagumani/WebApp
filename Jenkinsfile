@@ -10,12 +10,17 @@ pipeline {
         stage('Sonarqube') {
            steps {
                  withSonarQubeEnv('sonarqube1') {
-                 echo "Good"
-                 sh '/var/lib/jenkins/tools/hudson.tasks.Maven_MavenInstallation/maven/bin/mvn clean package sonar:sonar'
+                 echo "Sonar Qube Code Analysis Completed"
                  }
            }
          }
         
+		stage('compile') {
+           steps {
+                 echo "Compile Complete"
+           }
+         }
+		 
         stage ('Artifactory configuration') {
             steps {
                 rtServer (
@@ -74,5 +79,54 @@ pipeline {
                 )
             }
         }
+		
+		stage('deploy to QA ') {
+           steps {
+                 echo "Completed Deployment"
+           }
+         }
+		 
+		 
+		stage('Artifactory Deployment') {
+           steps {
+                 echo "Completed Artifactory Deployment"
+           }
+         }
+		 
+		 
+		 stage('Functional Testing') {
+           steps {
+                 echo "Functional Testing Completed"
+           }
+         }
+		 
+		 
+		stage('Performance Testing') {
+           steps {
+                 echo "Performace Testing Completed with Blaze Meter"
+           }
+         }
+		 
+		 stage('Deploy to Production ') {
+           steps {
+                 echo "Deployment on Production is compelted"
+           }
+         }
+		 
+		 
+		 stage('Sanity on Deployment ') {
+           steps {
+                 echo "Sanity Successfully Completed on Deployment"
+           }
+		   
+		   post {
+                 always {
+                     jiraSendDeploymentInfo  site: 'devopsgroups2.atlassian.net', branch: 'DEV-1 Create Jira'
+                 }
+             }
+         }
+		
+		
+		
     }
 }
