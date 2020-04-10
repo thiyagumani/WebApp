@@ -11,7 +11,7 @@ pipeline {
            steps {
                  withSonarQubeEnv('sonarqube1') {
                  echo "Good"
-                 sh 'mvn clean package sonar:sonar'
+                 sh '/var/lib/jenkins/tools/hudson.tasks.Maven_MavenInstallation/maven/bin/mvn clean package sonar:sonar'
                  }
            }
          }
