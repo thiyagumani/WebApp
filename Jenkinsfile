@@ -6,7 +6,21 @@ pipeline {
                 git branch: 'master', url: "https://github.com/midhunthampi/WebApp.git"
             }
         }
-
+        
+        stage('Sonarqube') {
+          environment {
+               scannerHome = tool 'sonarqube1'
+                      }
+           steps {
+             withSonarQubeEnv('sonarqube') {
+              sh "${scannerHome}/bin/sonar-scanner"
+                 }
+              timeout(time: 10, unit: 'MINUTES') {
+              waitForQualityGate abortPipeline: true
+               }
+           }
+         }
+        
         stage ('Artifactory configuration') {
             steps {
                 rtServer (
