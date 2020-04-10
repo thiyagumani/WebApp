@@ -9,7 +9,7 @@ pipeline {
         
         stage('Sonarqube') {
            steps {
-                 withSonarQubeEnv('sonarqube1') {
+                 withSonarQubeEnv(credentialsId: 'sonarqube1', installationName: 'sonarqube1')  {
                  echo "Sonar Qube Code Analysis Completed"
                  }
            }
