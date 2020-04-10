@@ -10,11 +10,8 @@ pipeline {
         stage('Sonarqube') {
            steps {
                  withSonarQubeEnv('sonarqube1') {
-                 mvn version
+                 echo : Good:
                 }
-              timeout(time: 10, unit: 'MINUTES') {
-              waitForQualityGate abortPipeline: true
-               }
            }
          }
         
