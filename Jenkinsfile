@@ -1,6 +1,6 @@
 node {
     // Get Artifactory server instance, defined in the Artifactory Plugin administration page.
-    def server = Artifactory.server url: SERVER_URL, credentialsId: CREDENTIALS
+    def server = Artifactory.newServer url: SERVER_URL, credentialsId: CREDENTIALS
     // Create an Artifactory Maven instance.
     def rtMaven = Artifactory.newMavenBuild()
     def buildInfo
