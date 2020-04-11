@@ -70,15 +70,6 @@ pipeline {
                  }
              }
         }
-
-        stage ('Xray scan') {
-            steps {
-                xrayScan (
-                    serverId: "thiyaguartifactory",
-                    failBuild: false
-                )
-            }
-        }
 		
 		stage('deploy to QA ') {
            steps {
