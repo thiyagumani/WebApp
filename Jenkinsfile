@@ -76,7 +76,7 @@ pipeline {
             }
             post {
                  always {
-                     jiraSendBuildInfo site: 'devopsgroups2.atlassian.net', branch: 'TEL-1'
+                     jiraSendBuildInfo site: 'devopsgroups2.atlassian.net', branch: 'TEL-1 Creating Service Request for wireless and wireline service issues'
                  }
                  success {
 		     slackSend (color: '#FFFF00', message: "Build Successful: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
