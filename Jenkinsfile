@@ -94,7 +94,7 @@ pipeline {
 		 
 		stage('Performance Testing') {
            steps {
-                 echo "Performace Testing Completed with Blaze Meter"
+                blazeMeterTest credentialsId: 'Blazemeter', testId: '7910253.taurus', workspaceId: '472855'
            }
          }
 		 
