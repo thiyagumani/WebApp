@@ -20,14 +20,6 @@ pipeline {
                  withSonarQubeEnv(credentialsId: 'sonarqube1', installationName: 'sonarqube1')  {
                  echo "Sonar Qube Code Analysis Completed"
             }
-		 post {
-                 success {
-		     slackSend (color: '#FFFF00', message: "Code Analysis Successful: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
-                 }
-	         failure {
-		     slackSend (color: '#FFFF00', message: "Code Analysis Failure: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
-                 }   
-             }
            }
          }	 
         stage ('Artifactory configuration') {
