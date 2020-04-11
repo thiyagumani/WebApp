@@ -101,7 +101,7 @@ pipeline {
 		   post {
                  always {
                      jiraSendBuildInfo site: 'devopsgroups2.atlassian.net', branch: 'DEV-6 Implement Code'
-		     jiraSendDeploymentInfo environmentId: '', environmentName: '', environmentType: 'development', serviceIds: [''], site: 'devopsgroups2.atlassian.net', branch: 'DEV-6 Implement Code', state: 'unknown'
+		     jiraSendDeploymentInfo environmentId: '', environmentName: '', environmentType: 'development', serviceIds: [''], site: 'devopsgroups2.atlassian.net', state: 'unknown'
                  }
              }
          }
