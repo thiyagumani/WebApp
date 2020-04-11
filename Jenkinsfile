@@ -76,7 +76,7 @@ pipeline {
             }
             post {
                  always {
-                     jiraSendBuildInfo site: 'devopsgroups2.atlassian.net', branch: 'DEV-6 Implement Code'
+                     jiraSendBuildInfo site: 'devopsgroups2.atlassian.net', branch: 'TEL-1'
                  }
                  success {
 		     slackSend (color: '#FFFF00', message: "Build Successful: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
