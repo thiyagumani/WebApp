@@ -127,7 +127,7 @@ pipeline {
 		 
 		stage('Performance Testing') {
            steps {
-                  blazeMeterTest credentialsId: 'Blazemeter', testId: '7910253.taurus', workspaceId: '472855'
+                  blazeMeterTest credentialsId: 'Blazemeter', testId: '7912478.taurus', workspaceId: '472836'
 		   slackSend (color: '#FFFF00', message: "PERFORMANCE TESTING COMPLETED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
            }
          }
