@@ -147,19 +147,10 @@ pipeline {
          }
 		 
 		 
-	stage('Sanity on Deployment ') {
+	stage('Sanity on Deployment') {
            steps {
                  publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '\\Acceptancetest\\target\\surefire-reports\\', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
-            }
-		 post {
-                 success {
-		     slackSend (color: '#FFFF00', message: "Sanity on Deployment Successful: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
-                 }
-	         failure {
-		     slackSend (color: '#FFFF00', message: "Sanity on Deployment Failed: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
-                 }   
-             }
-		   
+            }   
 		   post {
                  always {
 			jiraSendBuildInfo site: 'devopsgroups2.atlassian.net', branch: 'DEV-6 Implement Code' 
