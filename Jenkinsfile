@@ -71,9 +71,17 @@ pipeline {
              }
         }
 		
-		stage('deploy to QA ') {
+	stage('deploy to QA ') {
            steps {
-                 echo "Completed Deployment"
+		   
+		   rtMavenRun (
+                    tool: "maven", // Tool name from Jenkins configuration
+                    pom: 'pom.xml',
+                    goals: 'package',
+                    deployerId: "MAVEN_DEPLOYER",
+                    resolverId: "MAVEN_RESOLVER"
+		              )			   
+                 deploy adapters: [tomcat7(credentialsId: 'tomcat', path: '', url: 'http://18.191.223.34:8080/')], contextPath: '/QAWebapp', war: '**/*.war'
            }
          }
 		 
