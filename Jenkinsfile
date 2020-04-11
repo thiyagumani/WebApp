@@ -13,14 +13,7 @@ pipeline {
                  echo "Sonar Qube Code Analysis Completed"
                  }
            }
-         }
-        
-		stage('compile') {
-           steps {
-                 echo "Compile Complete"
-           }
-         }
-		 
+         }	 
         stage ('Artifactory configuration') {
             steps {
                 rtServer (
@@ -75,17 +68,9 @@ pipeline {
            steps {
 		 deploy adapters: [tomcat7(credentialsId: 'tomcat', path: '', url: 'http://18.191.223.34:8080/')], contextPath: '/QAWebapp', war: '**/*.war'
            }
-         }
+         }	 
 		 
-		 
-		stage('Artifactory Deployment') {
-           steps {
-                 echo "Completed Artifactory Deployment"
-           }
-         }
-		 
-		 
-		 stage('Functional Testing') {
+	stage('Functional Testing') {
            steps {
                  publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '\\functionaltest\\target\\surefire-reports', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
            }
@@ -94,7 +79,7 @@ pipeline {
 		 
 		stage('Performance Testing') {
            steps {
-                echo " Performance Testing using Blaze Meter" 
+                blazeMeterTest credentialsId: 'Blazemeter', testId: '7910253.taurus', workspaceId: '472855'
            }
          }
 		 
@@ -110,7 +95,7 @@ pipeline {
                 branch 'production'
             }
            steps {
-                 echo "Sanity Successfully Completed on Deployment"
+                 publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '\\Acceptancetest\\target\\surefire-reports\\', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
            }
 		   
 		   post {
