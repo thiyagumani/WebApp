@@ -87,7 +87,7 @@ pipeline {
 		 
 		 stage('Functional Testing') {
            steps {
-                 echo "Functional Testing Completed"
+                 publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '\\functionaltest\\target\\surefire-reports', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
            }
          }
 		 
