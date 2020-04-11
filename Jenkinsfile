@@ -100,7 +100,7 @@ pipeline {
 		   
 		   post {
                  always {
-			 jiraSendDeploymentInfo environmentId: 'environment', environmentName: 'Environment', environmentType: 'development', serviceIds: [''], site: 'devopsgroups2.atlassian.net', state: 'unknown'
+			 jiraSendDeploymentInfo environmentId: 'environment', environmentName: 'Environment', environmentType: 'development', site: 'devopsgroups2.atlassian.net', state: 'unknown'
                  }
              }
          }
