@@ -91,9 +91,6 @@ pipeline {
 		 
 		 
 		 stage('Sanity on Deployment ') {
-		    when {
-                branch 'production'
-            }
            steps {
                  publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '\\Acceptancetest\\target\\surefire-reports\\', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
            }
