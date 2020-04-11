@@ -99,11 +99,8 @@ pipeline {
          }
 		 
 		 stage('Deploy to Production ') {
-		    when {
-                branch 'production'
-            }
            steps {
-                 echo "Deployment on Production is compelted"
+          deploy adapters: [tomcat7(credentialsId: 'tomcat', path: '', url: 'http://18.219.155.56:8080/')], contextPath: '/ProdWebapp', war: '**/*.war'
            }
          }
 		 
