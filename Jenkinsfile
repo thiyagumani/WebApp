@@ -128,8 +128,15 @@ pipeline {
 		stage('Performance Testing') {
            steps {
                   blazeMeterTest credentialsId: 'BlazeMeterNew', testId: '7912478.taurus', workspaceId: '472836'
-		   slackSend (color: '#FFFF00', message: "PERFORMANCE TESTING COMPLETED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
-           }
+		  }
+		post {
+                 success {
+		     slackSend (color: '#FFFF00', message: "Performance Testing Completed: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+                 }
+	         failure {
+		     slackSend (color: '#FFFF00', message: "Performance Testing Failed: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+                 }   
+             }
          }
 		 
 		 stage('Deploy to Production ') {
