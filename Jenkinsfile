@@ -55,10 +55,9 @@ pipeline {
             steps {
                 rtPublishBuildInfo (
                     serverId: "thiyaguartifactory"
-			slackSend (color: '#FFFF00', message: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
-			echo '${env.JOB_NAME} [${env.BUILD_NUMBER}]' 
-			echo  ' ${env.BUILD_URL}'
                 )
+		slackSend (color: '#FFFF00', message: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+		echo '${env.JOB_NAME} [${env.BUILD_NUMBER}]'
             }
             post {
                  always {
