@@ -21,6 +21,7 @@ pipeline {
                  echo "Sonar Qube Code Analysis Completed"
            }
          }	 
+	    
         stage ('Artifactory configuration') {
             steps {
                 rtServer (
