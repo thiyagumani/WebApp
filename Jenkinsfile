@@ -13,6 +13,6 @@ pipeline {
                 echo "Sonar Qube Code Analysis Completed"
            }
          }	 
-		
+      }	
     }
 }
