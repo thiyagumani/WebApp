@@ -10,7 +10,7 @@ pipeline {
         stage('Sonarqube') {
            steps {
                 withSonarQubeEnv(credentialsId: 'sonarqube1', installationName: 'sonarqube1')  {
-                echo "Sonar Qube Code Analysis Completed"
+                sh '"$MVN_HOME/bin/mvn" -f sonarqube-scanner-maven/pom.xml -Dmaven.test.failure.ignore clean package'
            }
          }	 
       }	
