@@ -18,6 +18,19 @@ pipeline {
         stage('Sonarqube') {
            steps {
                 // withSonarQubeEnv(credentialsId: 'sonarqube1', installationName: 'sonarqube1')  {
+		   withSonarQubeEnv('Sonar') {
+			  sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.3.0.60:sonar ' +
+			  '-f all/pom.xml ' +
+			  '-Dsonar.projectKey=com.huettermann:all:master ' +
+			  '-Dsonar.login=$SONAR_UN ' +
+			  '-Dsonar.password=$SONAR_PW ' +
+			  '-Dsonar.language=java ' +
+			  '-Dsonar.sources=. ' +
+			  '-Dsonar.tests=. ' +
+			  '-Dsonar.test.inclusinos=**/*Test*/** ' +
+			  '-Dsonar.exclusions=**/*Test*/**'
+			  }
+			  
                  echo "Sonar Qube Code Analysis Completed"
            }
          }	 
@@ -119,7 +132,7 @@ pipeline {
 		 
 		stage('Performance Testing') {
            steps {
-                  blazeMeterTest credentialsId: 'BlazeMeterNew', testId: '7912478.taurus', workspaceId: '472836'
+                  blazeMeterTest credentialsId: 'BlazeMeterNew', testId: '7926951.taurus', workspaceId: '472849'
 		  }
 		post {
                  success {
