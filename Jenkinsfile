@@ -18,13 +18,12 @@ pipeline {
              }
         }
         
-        stage('Sonarqube') {
-//		       agent any    
-//		       steps {
-//                      withSonarQubeEnv(credentialsId: 'sonarqube1', installationName: 'sonarqube1') {    sh 'mvn clean package sonar:sonar -Dsonar.host.url=http://sonar-devops.westus.cloudapp.azure.com -Dsonar.login=admin -Dsonar.password=admin -Dsonar.sources=. -Dsonar.tests=. -Dsonar.test.inclusions=**/test/java/servlet/createpage_junit.java -Dsonar.exclusions=**/test/java/servlet/createpage_junit.java'
+        stage('Sonarqube') {   
+		       steps {
+//                             withSonarQubeEnv(credentialsId: 'sonarqube1', installationName: 'sonarqube1') {    sh 'mvn clean package sonar:sonar -Dsonar.host.url=http://sonar-devops.westus.cloudapp.azure.com -Dsonar.login=admin -Dsonar.password=admin -Dsonar.sources=. -Dsonar.tests=. -Dsonar.test.inclusions=**/test/java/servlet/createpage_junit.java -Dsonar.exclusions=**/test/java/servlet/createpage_junit.java'
 //          }
-//         }
-		echo "Sonar Qube Code Review Completed"
+			       echo "Sonar Qube Code Review Completed"
+         }		
 	}
 	    
 //	    stage("Quality Gate") {
