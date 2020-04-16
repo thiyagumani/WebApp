@@ -21,7 +21,7 @@ pipeline {
                 //    withMaven(maven:'Maven 3.3.9') {
                 //        sh 'mvn sonar:sonar'
                 //    }
-		 }
+		// }
 			 //   withSonarQubeEnv('Sonar') {
 		//	  sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.3.0.60:sonar ' +
 		//	  '-f all/pom.xml ' +
