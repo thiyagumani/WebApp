@@ -19,7 +19,7 @@ pipeline {
            steps {
 		   
 	  withSonarQubeEnv('sonar') {
-                sh 'mvn clean package sonar:sonar -Dsonar.host.url=http://sonar-devops.westus.cloudapp.azure.com/ -Dsonar.login=admin -Dsonar.password=admin -Dsonar.sources=. -Dsonar.tests=. -Dsonar.test.inclusions=**/test/java/servlet/createpage_junit.java -Dsonar.exclusions=**/test/java/servlet/createpage_junit.java'
+                sh 'mvn clean package sonar:sonar -Dsonar.host.url=http://sonar-devops.westus.cloudapp.azure.com/ -Dsonar.login=a9c8113177c7cfd5d1fa326e88261b0e00f210d1 -Dsonar.sources=. -Dsonar.tests=. -Dsonar.test.inclusions=**/test/java/servlet/createpage_junit.java -Dsonar.exclusions=**/test/java/servlet/createpage_junit.java'
               }
 		   
                 // withSonarQubeEnv(credentialsId: 'sonarqube1', installationName: 'sonarqube1')  {
