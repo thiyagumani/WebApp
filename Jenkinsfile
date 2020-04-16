@@ -19,7 +19,7 @@ pipeline {
            steps {
                  withSonarQubeEnv(credentialsId: 'sonarqube1', installationName: 'sonarqube1')  {
                     withMaven(maven:'Maven 3.3.9') {
-                        sh 'mvn clean verify sonar:sonar'
+                        sh 'mvn sonar:sonar'
                     }
 		 }
 			 //   withSonarQubeEnv('Sonar') {
