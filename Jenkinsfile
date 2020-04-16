@@ -17,6 +17,11 @@ pipeline {
         
         stage('Sonarqube') {
            steps {
+		   
+	  withSonarQubeEnv('sonar') {
+                sh 'mvn clean package sonar:sonar -Dsonar.host.url=http://sonar-devops.westus.cloudapp.azure.com/ -Dsonar.login=admin -Dsonar.password=admin -Dsonar.sources=. -Dsonar.tests=. -Dsonar.test.inclusions=**/test/java/servlet/createpage_junit.java -Dsonar.exclusions=**/test/java/servlet/createpage_junit.java'
+              }
+		   
                 // withSonarQubeEnv(credentialsId: 'sonarqube1', installationName: 'sonarqube1')  {
                 //    withMaven(maven:'Maven 3.3.9') {
                 //        sh 'mvn sonar:sonar'
